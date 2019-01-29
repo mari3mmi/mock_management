@@ -1,0 +1,104 @@
+<?php
+require '../db.php';
+session_start();
+
+// Verify user has logged in
+if (!($_SESSION['loggedIn'])) {
+    $_SESSION['message'] = "Login first!";
+    header("location: ../error.php");
+}
+$username =$_SESSION['username'];
+$userId = $_SESSION['userId'];
+$genericId = $_SESSION['genericId'];
+$role = $_SESSION['role'];
+
+$sql = "SELECT * FROM Employee WHERE employeeId = $genericId";
+$result = $mysqli->query($sql) or die($mysqli->error());
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $firstName = $row["firstName"];
+        $lastName = $row["lastName"];
+    }
+}
+function getClientsByBusinessType(){
+    $mysqli = $GLOBALS['mysqli'];
+    $sql = "SELECT businessTypeName, companyName, number FROM LineOfBusiness A1, Company A2, (SELECT * FROM (SELECT LineOfBusinessId, companyId, COUNT(*) as number 
+    FROM Contract GROUP BY lineOfBusinessId, companyId) tableA group by LineOfBusinessId) AS A3 WHERE A2.companyId = A3.companyId
+    AND A1.lineOfBusinessId = A3.LineOfBusinessId";
+    if ($result = $mysqli->query($sql)){
+        return $result;
+    } else {
+        die($mysqli->error);
+    }
+}
+
+function showContracts(){
+    $result = getClientsByBusinessType();
+
+    echo "<table>";
+    echo "<tr>";
+    echo "<th>Line Of Business</th>";
+    echo "<th>Company Namd</th>";
+    echo "<th>Number of Contracts</th>";
+    echo "<tr>";
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row['businessTypeName'] . "</td>";
+            echo "<td>" . $row['companyName'] . "</td>";
+            echo "<td>" . $row['number'] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr>";
+        echo "<td colspan='3'>No Contracts</td>";
+        echo "</tr>";
+    }
+
+    echo "</table>";
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CMS - Line Of Business</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="icon" type="image/png" href="../images/icons/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+<div class="sidenav">
+    <p class="form-title"> Welcome <br /><?=$firstName . " " . $lastName?></p>
+    <br />
+    <a href="employees.php" >
+            <i class="fa fa-2x fa-book text-primary sr-icons"></i>
+            Employees</a> <br />
+    <a href="latestContracts.php" >
+            <i class="fa fa-2x fa-tasks text-primary sr-icons"></i>
+            Latest Contracts</a> <br /> <br />
+    <a href="contractCategories.php" >
+            <i class="fa fa-2x fa-tasks text-primary sr-icons"></i>
+            Contract Categories</a> <br /> <br />  
+    <a href="reportLineOfBusiness.php" >
+            <i class="fa fa-2x fa-tasks text-primary sr-icons"></i>
+            Report Line Of Business</a> <br /> <br />
+    <a href="satisfaction.php" >
+            <i class="fa fa-2x fa-tasks text-primary sr-icons"></i>
+            Satisfaction</a> <br /> <br />  
+    <a href="../logout.php" >
+        <i class="fa fa-2x fa-power-off text-primary sr-icons"></i>
+            Log out</a> <br />
+</div>
+<br />
+        <h2 class="text">Line Of Business</h2>
+        <br />
+        <?=showContracts()?>
+</div>
+</body>
+</html>

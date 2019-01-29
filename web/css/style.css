@@ -1,0 +1,211 @@
+/* The sidenav */
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom right, #30475f, #2b4863);
+    background-color: #30475f;
+    overflow-x: hidden;
+    padding-top: 20px;
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    box-shadow: 2px 2px 2px #aaaaaa;
+    border-radius: 5px;
+  }
+  .sidenav a{
+    text-decoration: none;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+  }
+  .sidenav a:hover{
+      color: gray;
+  }
+/* Page content */
+body
+{
+    background: url('../images/cloud_trees.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+}
+.container{
+    margin-left: 250px !important; /* Same as the width of the sidenav */
+}
+.btn {
+    background-color: #31506d !important;
+    border-color:  #31506d !important;
+
+}
+.btn:hover{
+    background-color:#2b4863 !important;
+    border-color:  #2b4863 !important; 
+}
+.btn:onclick{
+    color:  #2b4863 !important; 
+}
+.btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(52, 88, 122,0.5) !important;
+  }
+p.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+p{
+    font-family: 'Open Sans' , sans-serif; 
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.text{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+h1.text {
+    font-size: 40px;
+}
+form.login
+{
+    width: 250px;
+    margin: 0 auto;
+}
+form.task{
+    padding-left: 20px;
+    padding-right:20px;
+    width: 25%;
+}
+form.pref{
+    width: 50% !important;
+}
+form.details{
+    width: 55% !important;
+}
+form.client{
+    margin-left: 0px;
+    margin-top: 20px;
+}
+.contracts form, .contracts table, .contracts select{
+    width: 200px !important;
+}
+
+.contractInfo{
+    width: 1500px !important;
+}
+.client select {
+    margin-bottom: 10px;
+}
+.client label{
+    margin-top: 5px;
+}
+
+form input[type="text"], form input[type="password"], form.client input[type="number"], form.task input[type="number"], label
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    outline: 0;
+}
+form input[type="number"]{
+    background: 0;
+    border: 0;
+    outline: 0; 
+}
+form label{
+    color: gray;
+}
+form input[type="submit"], a, button
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+form input[type="submit"]:hover, a:hover, button:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+select{
+    width:100%;
+    position: relative;
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-style: italic;
+    color: gray;
+    text-align: left;
+}
+.preferences form input, .preferences select, .tasks form input, .tasks select{
+    width:200px !important;
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #FFFFFF;
+}
+tr:hover {background-color: rgba(255, 255, 255, 0.7);}
+
+.black{
+    color: black;
+}
+
+.tasks{
+    margin-top:20px;
+    margin-right: 20px;
+}
+.preferences {
+    margin-top: 30px;
+}
+.manager form{
+    width: 70% !important;
+} 
+.manager table {
+    width: 1000px !important;
+}
